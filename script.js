@@ -2,6 +2,7 @@ function setup() {
   createCanvas(600, 400);
   paperprop = loadImage('paperprop.png')
   garbagecan = loadImage('garbagecan.png')
+  classboard = loadImage('classboard.jpg')
   bg = loadImage('classroom.jpg')
 }
 
@@ -14,27 +15,28 @@ var highscore = 0
 
 
 function startScreen(){
-	  background(100, 100, 100)
+	  background(classboard)
     fill(255)
     textFont('Georgia');
     textSize(18)
 		textAlign(CENTER);
-		text('Welcome to the Cathing Game,', width / 2, height / 3 + 45)
-    text('move your mouse to catch the balls flying around the screen!', width / 2, height / 2 + 4)
-    textSize(15)
-    text('click to start.....', width / 2, height / 2 + 28);
+		text('Welcome to the Cathing Game,', width / 2, height / 5 + 45)
+    textSize(12)
+    text('move your mouse to catch the paper balls flying around the classroom!', width / 2, height / 4 + 45)
+    textSize(13)
+    text('Click to start.....', width / 2, height / 4 + 65);
 		reset();
 }
 
 function GameOn(){
   background(bg)
+  text(LEFT)
   text("Score = " + score,40,20)
   text("Highscore = " + highscore,55,40)
-  text(CENTER)
   fill(255)
   image(paperprop,x,y,40,40)
   rectMode(CENTER)
-  image(garbagecan,mouseX,height-50,100,70)
+  image(garbagecan,mouseX-35,height-50,100,70)
   y+= speed;
   if(y > height){
   	screen = 2
@@ -74,14 +76,14 @@ function draw() {
 }
 
 function endScreen(){
-  	background(100, 100, 100)
+  	background(classboard)
 		fill(255)
     textFont('Georgia');
     textSize(18)
     textAlign(CENTER)
-		text('GAME OVER', width / 2, height / 2)
-  	text("Score = " + score, width / 2, height / 2 + 20)
-		text('Click if you want play again!', width / 2, height / 2 + 40);
+		text('GAME OVER', width / 2, height / 4 + 20)
+  	text("Score = " + score, width / 2, height / 4 + 40)
+		text('Click if you want play again!', width / 2, height / 4 + 60);
 }
 
 function mousePressed(){

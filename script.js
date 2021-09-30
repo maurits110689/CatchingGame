@@ -4,6 +4,8 @@ function setup() {
   garbagecan = loadImage('garbagecan.png')
   classboard = loadImage('classboard.jpg')
   bg = loadImage('classroom.jpg')
+  sound = loadSound('can.mp3')
+  bgsound = loadSound('schoolbellsound.mp3')
 }
 
 var score = 0
@@ -12,7 +14,6 @@ var y = -10
 var x = 100
 var screen = 0
 var highscore = 0
-
 
 function startScreen(){
 	  background(classboard)
@@ -34,17 +35,22 @@ function GameOn(){
   text("Score = " + score,40,20)
   text("Highscore = " + highscore,55,40)
   fill(255)
-  image(paperprop,x,y,40,40)
+  image(paperprop,x,y,40,40) 
   rectMode(CENTER)
   image(garbagecan,mouseX-35,height-50,100,70)
   y+= speed;
   if(y > height){
   	screen = 2
+    let volume = map(mouseX, 0, width, 0, 1);
+    volume = constrain(volume, 0, 1);
+    bgsound.amp(0.4);
+    bgsound.play()
 	 }
   if(y > height-10 & x > mouseX-40 & x < mouseX+40){
   	y=-20
     speed+=0.25
     score+= 1
+    sound.play()
     if (score > highscore)
       highscore = score;
   }

@@ -4,8 +4,10 @@ function setup() {
   garbagecan = loadImage('garbagecan.png')
   classboard = loadImage('classboard.jpg')
   bg = loadImage('classroom.jpg')
+  soundFormats('m4a', 'mp3', 'ogg')
   sound = loadSound('can.mp3')
   bgsound = loadSound('schoolbellsound.mp3')
+  classroom = loadSound('classroom.mp3')
 }
 
 var score = 0
@@ -32,8 +34,13 @@ function startScreen(){
 function GameOn(){
   background(bg)
   text(LEFT)
-  text("Score = " + score,40,20)
-  text("Highscore = " + highscore,55,40)
+  if(highscore < 10){
+    text("Score = " + score,37,20)
+  }
+  else{
+    text("Score = " + score,34,20)
+  }
+  text("Highscore = " + highscore,50,40)
   fill(255)
   image(paperprop,x,y,40,40) 
   rectMode(CENTER)
@@ -95,6 +102,7 @@ function endScreen(){
 function mousePressed(){
 	if(screen == 0){
   	screen = 1
+    classroom.play()
   }
   else if(screen == 2){
   	screen = 0

@@ -1,5 +1,10 @@
+function preload(){
+  soundFormats('m4a', 'mp3', 'ogg')
+  classroom = loadSound('classroom.mp3')
+}
+
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(600, 400)
   paperprop = loadImage('paperprop.png')
   garbagecan = loadImage('garbagecan.png')
   classboard = loadImage('classboard.jpg')
@@ -7,7 +12,6 @@ function setup() {
   soundFormats('m4a', 'mp3', 'ogg')
   sound = loadSound('can.mp3')
   bgsound = loadSound('schoolbellsound.mp3')
-  classroom = loadSound('classroom.mp3')
 }
 
 var score = 0
@@ -20,9 +24,9 @@ var highscore = 0
 function startScreen(){
 	  background(classboard)
     fill(255)
-    textFont('Georgia');
+    textFont('Georgia')
     textSize(18)
-		textAlign(CENTER);
+		textAlign(CENTER)
 		text('Welcome to the Cathing Game,', width / 2, height / 5 + 45)
     textSize(12)
     text('move your mouse to catch the paper balls flying around the classroom!', width / 2, height / 4 + 45)
@@ -34,7 +38,7 @@ function startScreen(){
 function GameOn(){
   background(bg)
   text(LEFT)
-  if(highscore < 10){
+  if(highscore < 10 || score >= 10){
     text("Score = " + score,37,20)
   }
   else{
@@ -42,16 +46,17 @@ function GameOn(){
   }
   text("Highscore = " + highscore,50,40)
   fill(255)
-  image(paperprop,x,y,40,40) 
+  image(paperprop,x,y,40,40)
   rectMode(CENTER)
   image(garbagecan,mouseX-35,height-50,100,70)
   y+= speed;
   if(y > height){
   	screen = 2
-    let volume = map(mouseX, 0, width, 0, 1);
-    volume = constrain(volume, 0, 1);
-    bgsound.amp(0.4);
+    let volume = map(mouseX, 0, width, 0, 1)
+    volume = constrain(volume, 0, 1)
+    bgsound.amp(0.4)
     bgsound.play()
+    classroom.stop()
 	 }
   if(y > height-10 & x > mouseX-40 & x < mouseX+40){
   	y=-20
@@ -59,10 +64,10 @@ function GameOn(){
     score+= 1
     sound.play()
     if (score > highscore)
-      highscore = score;
+      highscore = score
   }
 	if(y==-20){
-  	pickRandom();
+  	pickRandom()
   }
 }
 
@@ -71,9 +76,9 @@ function pickRandom(){
 }
 
 function reset(){
-	  score = 0;
-  	speed = 3;
-  	y = -10;
+	  score = 0
+  	speed = 3
+  	y = -10
 }
 
 function draw() {
@@ -91,20 +96,21 @@ function draw() {
 function endScreen(){
   	background(classboard)
 		fill(255)
-    textFont('Georgia');
+    textFont('Georgia')
     textSize(18)
     textAlign(CENTER)
 		text('GAME OVER', width / 2, height / 4 + 20)
   	text("Score = " + score, width / 2, height / 4 + 40)
-		text('Click if you want play again!', width / 2, height / 4 + 60);
+		text('Click if you want play again!', width / 2, height / 4 + 60)
 }
 
 function mousePressed(){
 	if(screen == 0){
   	screen = 1
+    classroom.amp(1);
     classroom.play()
   }
   else if(screen == 2){
-  	screen = 0
+    screen = 0
   }
 }

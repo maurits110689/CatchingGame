@@ -16,7 +16,7 @@ function setup() {
 
 var score = 0
 var speed = 3
-var y = -10
+var y = -20
 var x = 100
 var screen = 0
 var highscore = 0
@@ -58,14 +58,14 @@ function GameOn(){
     bgsound.play()
     classroom.stop()
 	 }
-  if(y > height-10 & x > mouseX-40 & x < mouseX+40){
+  if(y > height-10 & x > mouseX-20 & x < mouseX+20){
   	y=-20
     speed+=0.25
     score+= 1
     sound.play()
     if (score > highscore)
       highscore = score
-  }
+    }
 	if(y==-20){
   	pickRandom()
   }
